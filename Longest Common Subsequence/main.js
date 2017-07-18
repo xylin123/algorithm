@@ -1,10 +1,10 @@
 function LCS(x, y) {
-  let i = 0, str = '';
-  for (let j = 0; j < y.length; j ++) {
-    if (x.indexOf(y[j], i) > -1) {
-      str += y[j];
-      i = x.indexOf(y[j], i) + 1;
+  let i = 0;
+  return y.split('').reduce( function (str, letter) {
+    if (x.indexOf(letter, i) > -1) {
+      str += letter;
+      i = x.indexOf(letter, i) + 1;
     }
-  }
-  return str;
+    return str;
+  }, '');
 }
