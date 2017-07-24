@@ -1,22 +1,16 @@
 function pascalsTriangle(n) {
   //return a flat array representing the values of Pascal's Triangle to the n-th level
-  let result = [[1]], i = 1;
-  while (i < n) {
-    let arr = [];
-    for (let j = 0; j <= i; j++ ) {
-      if(j == 0 || j == i ) {
-        arr.push(1);
+  let pascals = [],
+      idx = 0;
+  for (let i = 0; i < n; i++ ) {
+    idx = pascals.length - i;
+    for (let j = 0; j < i + 1; j ++) {
+      if (j === 0 || j === i) {
+        pascals.push(1);
       } else {
-        arr.push(result[i - 1][j] + result[i - 1][j - 1]);
+        pascals.push(pascals[idx + j - 1] + pascals[idx + j]);
       }
     }
-    result.push(arr);
-    i++;
   }
-  return result.reduce(function(a, curr) {
-    return curr.reduce(function(b, c) {
-      b.push(c);
-      return b;
-    }, a)
-  }, []);
+  return pascals;
 }
